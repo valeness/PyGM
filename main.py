@@ -7,14 +7,11 @@ def load_image(name):
     image = pygame.image.load(name)
     return image
 
-class GMSprite(pygame.sprite.Sprite):
-    def __init__(self):
+class Create_Sprite(pygame.sprite.Sprite):
+    def __init__(self, sprimage):
         super(GMSprite, self).__init__()
         self.images = []
-        self.images.append(load_image('assets/stand1_0.png'))
-        self.images.append(load_image('assets/stand1_1.png'))
-        self.images.append(load_image('assets/stand1_2.png'))
-        self.images.append(load_image('assets/stand1_3.png'))
+        self.images.append(load_image(sprimage))
 
         self.index = 0
         self.image = self.images[self.index]
@@ -38,6 +35,12 @@ frame_id = 1
 
 next_frame = time.time()
 
+sprite = Create_Sprite('assets/stand1_0.png')
+sprite.images.append(load_image('assets/stand1_1.png'))
+sprite.images.append(load_image('assets/stand1_2.png'))
+sprite.images.append(load_image('assets/stand1_3.png'))
+
+group = pygame.sprite.Group(sprite)
 
 class GameTimer(Entity):
     def __init__(self, **kw):
@@ -55,9 +58,6 @@ class GameTimer(Entity):
     def event_step(self):
         super(GameTimer, self).event_step()
         #print self.alarm
-
-sprite = GMSprite()
-group = pygame.sprite.Group(sprite)
 
 class Character(Entity):
     def __init__(self, **kw):
