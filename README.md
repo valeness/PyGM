@@ -8,7 +8,9 @@ The goal of this project is to create a game engine in Python that is as easy to
 PyGM is based heavily around PyGame, but only for drawing and GUI rendering. A fully capable text game could be built using just PyGM classes and functions.
 
 ## QuickStart
-To start a basic PyGame window, do:
+Following this short tutorial you should have the basics needed to build *something* using PyGM. You will need a moderate level of python knowledge to continue, hopefully in the future PyGM will be entirely beginner friendly
+
+### Basic PyGame Window
 ```python
 from PyGM.master import *
 
@@ -33,6 +35,7 @@ while running:
 
 This will show you a black screen 320px by 240px. Keep note that the console is still running behind the window, keep track of this, we'll be using it to test and show realtime data on alarms.
 
+### Adding PyGM Stuff
 Now we'll add all the PyGM stuff to it, I'll try my damnedest to comment them well.
 
 ```python
