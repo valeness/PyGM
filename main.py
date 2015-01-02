@@ -2,27 +2,6 @@ import pygame
 import sys, time
 from PyGM.master import *
 
-
-def load_image(name):
-    image = pygame.image.load(name)
-    return image
-
-class Create_Sprite(pygame.sprite.Sprite):
-    def __init__(self, sprimage):
-        super(GMSprite, self).__init__()
-        self.images = []
-        self.images.append(load_image(sprimage))
-
-        self.index = 0
-        self.image = self.images[self.index]
-        self.rect = pygame.Rect(5, 5, 62, 75)
-
-    def update(self):
-        self.index += 1
-        if self.index >= len(self.images):
-            self.index = 0
-        self.image = self.images[self.index]
-
 pygame.display.init()
 screen = pygame.display.set_mode((320, 240))
 
@@ -34,13 +13,6 @@ pygame.display.set_caption("PY-GM")
 frame_id = 1
 
 next_frame = time.time()
-
-sprite = Create_Sprite('assets/stand1_0.png')
-sprite.images.append(load_image('assets/stand1_1.png'))
-sprite.images.append(load_image('assets/stand1_2.png'))
-sprite.images.append(load_image('assets/stand1_3.png'))
-
-group = pygame.sprite.Group(sprite)
 
 class GameTimer(Entity):
     def __init__(self, **kw):
@@ -78,7 +50,7 @@ class Character(Entity):
 
     def event_step(self):
         super(Character, self).event_step()
-        print self.alarm['stand']
+        # print self.alarm['stand']
         
     
 
@@ -97,10 +69,17 @@ class Tree(Entity):
 NewGameRoom()
 NewGameRoom.add_object(0, 0, GameTimer)
 NewGameRoom.add_object(0, 0, Tree)
-NewGameRoom.add_object(10, 10, Character)
+NewGameRoom.add_object(100, 100, Character)
 
 obj = NewGameRoom.object_index(1)
 char = NewGameRoom.object_index(2)
+
+sprite = Create_Sprite('assets/stand1_0.png', char)
+sprite.images.append(load_image('assets/stand1_1.png'))
+sprite.images.append(load_image('assets/stand1_2.png'))
+sprite.images.append(load_image('assets/stand1_3.png'))
+
+group = pygame.sprite.Group(sprite)
 
 #NewGameRoom.instance_destroy(NewGameRoom.type_nearest(100, 0, Tree))
 

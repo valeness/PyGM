@@ -1,6 +1,10 @@
 #Game Maker Object
 from math import sqrt
+import pygame
 
+def load_image(name):
+    image = pygame.image.load(name)
+    return image
 
 class Entity(object):
     #all game classes inherit this class
@@ -46,6 +50,24 @@ class Entity(object):
 
     def event_draw(self):
         pass
+
+class Create_Sprite(pygame.sprite.Sprite):
+    def __init__(self, sprimage, obj):
+        super(Create_Sprite, self).__init__()
+        self.images = []
+        self.images.append(load_image(sprimage))
+
+        self.index = 0
+        self.image = self.images[self.index]
+        self.rect = pygame.Rect(obj.x, obj.y, 62, 75)
+
+    def update(self):
+        self.index += 1
+        if self.index >= len(self.images):
+            self.index = 0
+        self.image = self.images[self.index]
+
+
 
 class NewGameRoom:
     object_dictionary = {}
