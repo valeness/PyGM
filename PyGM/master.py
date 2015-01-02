@@ -2,9 +2,16 @@
 from math import sqrt
 import pygame
 
+### Utility Functions ###
+# Concise way to load images to pygame
 def load_image(name):
     image = pygame.image.load(name)
     return image
+
+# Minimize code needed to draw sprite group
+def group_draw(group_name, screen):
+    group_name.update()
+    group_name.draw(screen)
 
 class Entity(object):
     #all game classes inherit this class

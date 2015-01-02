@@ -1,4 +1,3 @@
-import pygame
 import sys, time
 from PyGM.master import *
 
@@ -10,9 +9,6 @@ clock = pygame.time.Clock()
 
 running = True
 pygame.display.set_caption("PY-GM")
-frame_id = 1
-
-next_frame = time.time()
 
 class GameTimer(Entity):
     def __init__(self, **kw):
@@ -41,12 +37,10 @@ class Character(Entity):
     def stand(self):
         if self.alarm['stand'] == 0:
             self.alarm = {'stand': 10}
-            group.update()
-            group.draw(screen)
+            group_draw(group, screen)
         elif self.alarm['stand'] == 11:
             self.alarm = {'stand': 10}
-            group.update()
-            group.draw(screen)
+            group_draw(group, screen)
 
     def event_step(self):
         super(Character, self).event_step()
@@ -72,14 +66,14 @@ NewGameRoom.add_object(0, 0, Tree)
 NewGameRoom.add_object(100, 100, Character)
 
 obj = NewGameRoom.object_index(1)
-char = NewGameRoom.object_index(2)
+obj_maple = NewGameRoom.object_index(2)
 
-sprite = Create_Sprite('assets/stand1_0.png', char)
-sprite.images.append(load_image('assets/stand1_1.png'))
-sprite.images.append(load_image('assets/stand1_2.png'))
-sprite.images.append(load_image('assets/stand1_3.png'))
+spr_maple = Create_Sprite('assets/stand1_0.png', obj_maple)
+spr_maple.images.append(load_image('assets/stand1_1.png'))
+spr_maple.images.append(load_image('assets/stand1_2.png'))
+spr_maple.images.append(load_image('assets/stand1_3.png'))
 
-group = pygame.sprite.Group(sprite)
+group = pygame.sprite.Group(spr_maple)
 
 #NewGameRoom.instance_destroy(NewGameRoom.type_nearest(100, 0, Tree))
 
@@ -91,7 +85,7 @@ while running:
         if keys[pygame.K_UP]:
             obj.sayhi()
 
-    char.stand()
+    obj_maple.stand()
 
     #make all objects in world preform step event
     NewGameRoom.room_step()
