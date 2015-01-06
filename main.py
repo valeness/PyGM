@@ -36,10 +36,10 @@ class Character(Entity):
 
     def stand(self):
         if self.alarm['stand'] == 0:
-            self.alarm = {'stand': 10}
+            self.alarm['stand'] = 10
             group_draw(group, screen)
         elif self.alarm['stand'] == 11:
-            self.alarm = {'stand': 10}
+            self.alarm['stand'] = 10
             group_draw(group, screen)
 
     def event_step(self):
